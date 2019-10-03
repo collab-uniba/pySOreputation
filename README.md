@@ -67,7 +67,7 @@ If you want to run your script locally or deploy the web service on your own ser
 
 Go to the `scripts/db-setup/` folder and run in batch mode the sql script `setup_sequential.sh`:
 
-```$ sh setup_sequential.sh```
+```$ bash setup_sequential.sh```
 ## NOTE:
 Before running, edit the first lines of the file to change the following information:
 ```
