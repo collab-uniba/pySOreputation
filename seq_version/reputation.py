@@ -103,7 +103,7 @@ tags_table = "tags"
 users_table = "users"
 votes_table = "votes"
 
-conn = pymysql.connect(host='localhost', user='root', password='beHixei0') # create a connection to MySQL with arguments: host, username and password
+conn = pymysql.connect(host='localhost', user='insert_user', password='insert_password') # create a connection to MySQL with arguments: host, username and password
 main_cursor = conn.cursor()
 cursor = conn.cursor()
 main_cursor.execute("use " + database_name) # access to database 
