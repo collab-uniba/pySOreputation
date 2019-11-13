@@ -304,8 +304,9 @@ def reputation(Souser):
 
     if estimated_reputation < 1:
         estimated_reputation = 1
-
+    end = datetime.datetime.now()
     print("The estimated reputation on " + str(endDate) + " is: " + str(estimated_reputation) + " while the real reputation is : " + str(real_reputation))
+    print("Time to estimate reputation for user " + user_id + ": " + str(end - start))
 
 # The Main
 
@@ -325,27 +326,12 @@ while temp != 'q':
 NUM_WORKERS = i
 
 #Run tasks serially
-start_time = time.time()
+start_time = datetime.datetime.now()
 ct = len(sousers) - 1
 for _ in range(NUM_WORKERS):
     of = sousers[ct]
     reputation(of)
     ct = ct - 1    
-end_time = time.time()
-
-#print("Serial time=", end_time - start_time)
-
-# Run tasks using processes
-#start_time = time.time()
-#ct = NUM_WORKERS - 1
-#processes = []
-#for _ in range(NUM_WORKERS):
-#    processes.append(multiprocessing.Process(target = reputation(sousers[ct])))
-#    ct = ct - 1
-#processes = [multiprocessing.Process(target=reputation()) for _ in range(NUM_WORKERS)]
-#[process.start() for process in processes]
-#[process.join() for process in processes]
-#end_time = time.time()
-
-#print("Parallel time=", end_time - start_time)
+end_time = datetime.datetime.now()
+print("Total time: " + str(end_time - start_time))
 conn.close()
