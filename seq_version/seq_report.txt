@@ -1,2 +1,0 @@
-User id, creation time, real reputation, estimated reputation, preprocessing information time
-1196,aku,2008-08-13,2019-08-01,103360,101404
