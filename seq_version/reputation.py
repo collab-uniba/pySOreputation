@@ -78,6 +78,23 @@ class Souser:
     def take_end(self):
         return self.endDate
     
+    def take_reputation(self):
+        return self.reputation
+
+    def set_reputation(self, reputation):
+        self.reputation = reputation
+
+    def set_estimate_reputation(self, estimated_reputation):
+        self.estimated_reputation = estimated_reputation
+        
+    def take_estimate_reputation(self):
+        return self.estimated_reputation
+
+    def take_all(self):
+        user = str(self.take_id()) + "," + str(self.take_user()) + "," + str(self.take_begin()) + "," + str(self.take_end())
+        user = user + "," + str(self.take_reputation()) + "," + str(self.take_estimate_reputation())
+        return user
+
     def printus(self):
 	print(self.user_name)
 	print(self.user_id)
@@ -103,7 +120,7 @@ tags_table = "tags"
 users_table = "users"
 votes_table = "votes"
 
-conn = pymysql.connect(host='localhost', user='insert_user', password='insert_password') # create a connection to MySQL with arguments: host, username and password
+conn = pymysql.connect(host='localhost', user='root', password='beHixei0') # create a connection to MySQL with arguments: host, username and password
 main_cursor = conn.cursor()
 cursor = conn.cursor()
 main_cursor.execute("use " + database_name) # access to database 
@@ -113,7 +130,7 @@ def setup_all():
     ris = []
 
     while True:
-        user_name = raw_input("Insert user name and press Enter: ")
+        user_name = raw_input("Enter user name: ")
         main_cursor.execute("select Id from " + users_table + "  where DisplayName = '" + user_name + "'")
         x = main_cursor.fetchone()
         while x != None:
@@ -191,9 +208,10 @@ def reputation(Souser):
     main_cursor.execute("select reputation from " + users_table + " where Id = " + str(user_id))
     real_reputation = main_cursor.fetchone()
     real_reputation = real_reputation[0]
+    Souser.set_reputation(real_reputation)
 
     while beginDate <= endDate:
-        print(str(beginDate) + " - " + str(endDate) + " - " + str(estimated_reputation) + " - " + str(real_reputation))
+        
         searchDay1 = beginDate.strftime('%Y-%m-%d') + " 00:00:00"
         searchDay2 = beginDate.strftime('%Y-%m-%d') + " 23:59:59"
         daily_points = 0 # (You can earn a maximum of 200 reputation per day)
@@ -305,8 +323,9 @@ def reputation(Souser):
     if estimated_reputation < 1:
         estimated_reputation = 1
     end = datetime.datetime.now()
+    Souser.set_estimate_reputation(estimated_reputation)
     print("The estimated reputation on " + str(endDate) + " is: " + str(estimated_reputation) + " while the real reputation is : " + str(real_reputation))
-    print("Time to estimate reputation for user " + user_id + ": " + str(end - start))
+    print("Time to estimate reputation for user " + str(user_id) + ": " + str(end - start))
 
 # The Main
 
@@ -325,12 +344,18 @@ while temp != 'q':
 
 NUM_WORKERS = i
 
+report = open("seq_report.txt", "w+")
+report.close()
+report = open("seq_report.txt", "a+")
+report.write("User id, creation time, real reputation, estimated reputation, preprocessing information time" + "\n")
+
 #Run tasks serially
 start_time = datetime.datetime.now()
 ct = len(sousers) - 1
 for _ in range(NUM_WORKERS):
     of = sousers[ct]
     reputation(of)
+    report.write(sousers[ct].take_all() + "\n")
     ct = ct - 1    
 end_time = datetime.datetime.now()
 print("Total time: " + str(end_time - start_time))

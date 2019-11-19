@@ -1,0 +1,6 @@
+User id, preprocessing information time
+User id, DisplayName, Begin date, End date, Reputation, Estimated reputation
+3260314,JRazor,2014-02-01,2019-08-01,1646, 1756
+11865144,Roberto Bellarosa,2019-07-31,2019-08-01,1, 1
+1196,aku,2008-08-13,2019-08-01,103360, 101535
+Total time for concurrent.futures execution: 0:00:02.244931

@@ -1,0 +1,2 @@
+User id, creation time, real reputation, estimated reputation, preprocessing information time
+293050,mdeous,2010-03-13,2019-08-01,13198,13011
