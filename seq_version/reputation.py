@@ -26,22 +26,22 @@ class Souser:
     def set_begin(self, beginDate):
         self.beginDate = beginDate
         
-    def take_user(self):
+    def get_user(self):
         return self.user_name
      
-    def take_id(self):
+    def get_id(self):
         return self.user_id
 
-    def take_end(self):
+    def get_end(self):
         return self.end_date
     
-    def take_begin(self):
+    def get_begin(self):
         return self.beginDate
      
-    def take_end(self):
+    def get_end(self):
         return self.endDate
     
-    def take_reputation(self):
+    def get_reputation(self):
         return self.reputation
 
     def set_reputation(self, reputation):
@@ -50,12 +50,12 @@ class Souser:
     def set_estimate_reputation(self, estimated_reputation):
         self.estimated_reputation = estimated_reputation
         
-    def take_estimate_reputation(self):
+    def get_estimate_reputation(self):
         return self.estimated_reputation
 
-    def take_all(self):
-        user = str(self.take_id()) + "," + str(self.take_user()) + "," + str(self.take_begin()) + "," + str(self.take_end())
-        user = user + "," + str(self.take_reputation()) + "," + str(self.take_estimate_reputation())
+    def gete_all(self):
+        user = str(self.get_id()) + "," + str(self.get_user()) + "," + str(self.get_begin()) + "," + str(self.get_end())
+        user = user + "," + str(self.get_reputation()) + "," + str(self.get_estimate_reputation())
         return user
 
     def printus(self):
@@ -152,9 +152,9 @@ def reputation(Souser):
     main_cursor.execute("use " + database_name) # access to database
     cursor = conn.cursor()
     
-    beginDate = Souser.take_begin()
-    endDate = Souser.take_end()
-    user_id = Souser.take_id()
+    beginDate = Souser.get_begin()
+    endDate = Souser.get_end()
+    user_id = Souser.get_id()
     
     print("##########################################################################################")
     print("Working for this user parameters: ")
@@ -265,7 +265,7 @@ ct = len(sousers) - 1
 for _ in range(NUM_WORKERS):
     of = sousers[ct]
     reputation(of)
-    report.write(sousers[ct].take_all() + "\n")
+    report.write(sousers[ct].get_all() + "\n")
     ct = ct - 1    
 end_time = datetime.datetime.now()
 print("Total time: " + str(end_time - start_time))
