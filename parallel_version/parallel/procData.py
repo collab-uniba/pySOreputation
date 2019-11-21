@@ -23,8 +23,6 @@ def getInfoUser(user_id,ids,names):
         if (i == user_id):    
             ris.append(ids[j])
         j = j + 1
-    
-    end = datetime.datetime.now()   
     return ris
 
 def getbeginDate(user_id,ids,dates):
