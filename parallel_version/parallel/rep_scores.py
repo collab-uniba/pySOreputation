@@ -8,6 +8,7 @@ Created on Wed Nov  27 10:16:59 2019
 #This class provide the reputation scores values
 
 class score:
+  
   def __init__(self):
       return
   
