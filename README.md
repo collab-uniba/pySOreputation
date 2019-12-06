@@ -90,6 +90,27 @@ The scripts referenced in this section must be edited prior to execution, in ord
 - PyMySQL version 0.7.9
 
 #### Usage
-From comand line run:
+From command line run:
 
 ```$ python reputation.py```
+
+### Script: Parallel version
+
+Need file CSV (setup_parallel.sh)
+
+#### Requirements
+- Python 2.7 (or superior)
+- Pandas 0.25.3
+- concurrent.futures
+
+#### Usage
+From command line run:
+
+```$ python main.py```
+### Web Service 
+#### Api
+Documentation is available here.
+#### Requirements
+- Flask 1.1.1
+- Python 2.7 (or superior)
+- tkinter (optional for GUI)
