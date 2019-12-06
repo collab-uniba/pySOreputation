@@ -72,7 +72,7 @@ def setup_all(basics):
     ris = []
     while True:
 
-        user_name = raw_input("Insert user name and press Enter: ")
+        user_name = input("Insert user name and press Enter: ")
         ris = getInfoUser(user_name, users_index,names)
 
         if len(ris) > 0:
@@ -86,7 +86,7 @@ def setup_all(basics):
             for item in ris:
                 print(str(i) + " - " + str(item))
                 i = i + 1
-            user_id = raw_input("Select the user's id: ")
+            user_id = input("Select the user's id: ")
             if RepresentsInt(user_id) == True:
                 user_id = int(user_id)
                 if user_id >= 0 and user_id <= len(ris):
@@ -102,7 +102,7 @@ def setup_all(basics):
 
     while True:
         try:
-            endDate = raw_input("Enter a date >= " + str(beginDate) + " in YYYY-MM-DD format: ")
+            endDate = input("Enter a date >= " + str(beginDate) + " in YYYY-MM-DD format: ")
             year, month, day = map(int, endDate.split('-'))
             endDate = datetime.date(year, month, day)
             if endDate >= beginDate:
