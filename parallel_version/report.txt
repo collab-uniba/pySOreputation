@@ -1,4 +1,4 @@
 User id, preprocessing information time
 User id, DisplayName, Begin date, End date, Reputation, Estimated reputation
 1196,aku,2008-08-13,2019-08-01,103360, 101535
-Total time for concurrent.futures execution: 0:00:04.576350
+Total time for concurrent.futures execution: 0:00:02.183599
