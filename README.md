@@ -118,7 +118,8 @@ Need file CSV (setup_parallel.sh)
 ##### Documentation
 From command line run:
 ```/usr/local/bin/uwsgi --ini app.ini```
-Wait for setup of application service
+
+Wait for setup of application service.
 #### Usage
 From command line run:
 ```$ python client.py```
