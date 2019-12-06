@@ -26,9 +26,9 @@ def worker(the_map,basics):
     i = 0
     while temp != 'q':
         if i == 0:
-            temp = raw_input("Press q to close the program or press Enter to provide information about the user:")
+            temp = input("Press q to close the program or press Enter to provide information about the user:")
         else:
-            temp = raw_input("Press q to exit and start processing information or press enter to give another user: ")
+            temp = input("Press q to exit and start processing information or press enter to give another user: ")
         if temp == 'q':
             break
         else:
