@@ -17,12 +17,12 @@ def send_request_post():
 
 def get_data(users, dates):
     while True:
-        number = raw_input("Insert user id: ")
+        number = input("Insert user id: ")
         number = int(number)
 	users.append(number)
-        date = raw_input("Insert a date in format YY-MM-DD:")
+        date = input("Insert a date in format YY-MM-DD:")
         dates.append(str(date))
-        decision = raw_input("To exit and start computation press q:")
+        decision = input("To exit and start computation press q:")
         if(decision == 'q'):
 	    break
         else:
