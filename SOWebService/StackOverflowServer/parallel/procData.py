@@ -206,7 +206,7 @@ def create_dict(mother_set):
     return big_map
 
 def get_basic_from_file():
-    file5 = "/mnt/vdb/bellarosa_tesi/SO_reputation/scripts/parallel/Users.csv"
+    file5 = "/Users.csv"
     users = pd.read_csv(file5, usecols = [0,1,2,3,11], header = None, sep = ',', quotechar = '"', index_col = [0], engine = 'c')
     users_index = users.index.values.tolist()
     names = users[3].tolist()
@@ -224,11 +224,11 @@ def get_basic_from_file():
 
 def preprocessing(): #preprocessing all info about the user  with pandas
     
-    file0 = "/mnt/vdb/bellarosa_tesi/SO_reputation/scripts/parallel/Question_Answer.csv"
-    file1 = "/mnt/vdb/bellarosa_tesi/SO_reputation/scripts/parallel/Posts_Votes1.csv"
-    file2 = "/mnt/vdb/bellarosa_tesi/SO_reputation/scripts/parallel/Posts_Votes2.csv"
-    file3 = "/mnt/vdb/bellarosa_tesi/SO_reputation/scripts/parallel/Posts_Votes3.csv"
-    file4 = "/mnt/vdb/bellarosa_tesi/SO_reputation/scripts/parallel/Posts_Votes4.csv"   
+    file0 = "/Question_Answer.csv"
+    file1 = "/Posts_Votes1.csv"
+    file2 = "/Posts_Votes2.csv"
+    file3 = "/Posts_Votes3.csv"
+    file4 = "/Posts_Votes4.csv"   
     
     #Pandas code    
     mother_set = []
