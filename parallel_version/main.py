@@ -10,7 +10,7 @@ from parallel.procData import get_basic_from_file
 import datetime
 
 def main():
-    print("Welcome to Stack Overflow reputation estimator!")
+    print("\nWelcome to Stack Overflow reputation estimator!")
     print("\nLoading data...\nIt will takes about 15 minutes!")
     start = datetime.datetime.now()
     the_map = preprocessing()
