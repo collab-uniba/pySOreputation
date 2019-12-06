@@ -108,9 +108,23 @@ From command line run:
 
 ```$ python main.py```
 ### Web Service 
-#### Api
-Documentation is available here.
+Need file CSV (setup_parallel.sh)
 #### Requirements
 - Flask 1.1.1
 - Python 2.7 (or superior)
 - tkinter (optional for GUI)
+- uWSGI 2.0.18
+#### Api
+##### Documentation
+From command line run:
+```/usr/local/bin/uwsgi --ini app.ini```
+Wait for setup of application service
+#### Usage
+From command line run:
+```$ python client.py```
+
+For GUI usage run:
+```$ python client.py```
+
+#### Example
+![Result example in client](https://github.com/collab-uniba/pySOreputation/blob/master/images/web%20server%20result.PNG)
