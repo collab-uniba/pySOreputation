@@ -7,6 +7,9 @@ Created on Wed Nov  6 10:16:20 2019
 
 import datetime # library to manage date
 from parallel.procData import preprocessing
+from parallel.rep_scores import score
+
+theScore = score()
   
 def reputation(SOuser,big_map):
     
@@ -17,7 +20,6 @@ def reputation(SOuser,big_map):
     down_quest_id = big_map[3]
     up_answ_id = big_map[4]
     down_answ_id = big_map[5]
-
         
     beginDate = SOuser.get_begin()
     endDate = SOuser.get_end()
@@ -52,7 +54,7 @@ def reputation(SOuser,big_map):
                     if(i <= searchDay2):
                         result = result + 1
 
-        acceptedAnswers = acceptedAnswers + result * 15 #answer is marked “accepted”: +15
+        acceptedAnswers = acceptedAnswers + result * theScore.ans_accepted #answer is marked “accepted”: +15
         
         qa2 = question_id.get(SOuser.get_id())
         result = 0
@@ -62,7 +64,7 @@ def reputation(SOuser,big_map):
                     if(j <= searchDay2):
                         result = result + 1
         
-        acceptedAnswers = acceptedAnswers + result * 2 #(+2 to acceptor)
+        acceptedAnswers = acceptedAnswers + result * theScore.acceptor #(+2 to acceptor)
         
         temp = beginDate
         beginDate = str(beginDate) + " 00:00:00"
@@ -74,7 +76,7 @@ def reputation(SOuser,big_map):
                 if(k == beginDate):
                     upVotes = upVotes + 1
 
-        daily_points = daily_points + upVotes * 5 #question is voted up: +5
+        daily_points = daily_points + upVotes * theScore.quest_up #question is voted up: +5
 
         downVotes = 0
         pv2 = down_quest_id.get(SOuser.get_id())
@@ -83,7 +85,7 @@ def reputation(SOuser,big_map):
                 if(l == beginDate):
                     downVotes = downVotes + 1               
                 
-        daily_points = daily_points + downVotes * -2 #your question is voted down: -2
+        daily_points = daily_points + downVotes * theScore.quest_down #your question is voted down: -2
 
         upVotes = 0
         pv3 = up_answ_id.get(SOuser.get_id())
@@ -92,7 +94,7 @@ def reputation(SOuser,big_map):
                 if(m == beginDate):
                     upVotes = upVotes + 1
         
-        daily_points = daily_points + upVotes * 10 #answer is voted up: +10
+        daily_points = daily_points + upVotes * thScore.ans_up #answer is voted up: +10
 
         downVotes = 0
         pv4 = down_answ_id.get(SOuser.get_id())
@@ -101,7 +103,7 @@ def reputation(SOuser,big_map):
                 if(n == beginDate):
                     downVotes = downVotes + 1
         
-        daily_points = daily_points + downVotes * -2 #your answer is voted down: -2
+        daily_points = daily_points + downVotes * theScore.ans_down #your answer is voted down: -2
         
 
         daily_points = daily_points + acceptedAnswers #accepted answers are not subject to the daily reputation limit
