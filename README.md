@@ -124,8 +124,5 @@ Wait for setup of application service.
 From command line run:
 ```$ python client.py```
 
-For GUI usage run:
-```$ python client.py```
-
 #### Example
 ![Result example in client](https://github.com/collab-uniba/pySOreputation/blob/master/images/web%20server%20result.PNG)
