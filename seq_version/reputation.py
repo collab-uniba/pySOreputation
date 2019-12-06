@@ -53,7 +53,7 @@ class Souser:
     def get_estimate_reputation(self):
         return self.estimated_reputation
 
-    def gete_all(self):
+    def get_all(self):
         user = str(self.get_id()) + "," + str(self.get_user()) + "," + str(self.get_begin()) + "," + str(self.get_end())
         user = user + "," + str(self.get_reputation()) + "," + str(self.get_estimate_reputation())
         return user
@@ -93,7 +93,7 @@ def setup_all():
     ris = []
 
     while True:
-        user_name = raw_input("Enter user name: ")
+        user_name = input("Enter user name: ")
         main_cursor.execute("select Id from " + users_table + "  where DisplayName = '" + user_name + "'")
         x = main_cursor.fetchone()
         while x != None:
@@ -113,7 +113,7 @@ def setup_all():
             for item in ris:
                 print(str(i) + " - " + str(item))
                 i = i + 1
-            user_id = raw_input("Select the user's id: ")
+            user_id = input("Select the user's id: ")
             if RepresentsInt(user_id) == True:
                 user_id = int(user_id)
                 if user_id >= 0 and user_id <= len(ris):
@@ -129,7 +129,7 @@ def setup_all():
     beginDate = beginDate[0].date()
     while True:
         try:
-            endDate = raw_input("Enter a date >= " + str(beginDate) + " in YYYY-MM-DD format: ")
+            endDate = input("Enter a date >= " + str(beginDate) + " in YYYY-MM-DD format: ")
             year, month, day = map(int, endDate.split('-'))
             endDate = datetime.date(year, month, day)
             if endDate >= beginDate:
@@ -243,7 +243,7 @@ sousers = []
 temp = ""
 i = 0
 while temp != 'q':
-    temp = raw_input("Please press q to exit or press Enter to continue: ")
+    temp = input("Please press q to exit or press Enter to continue: ")
     if temp == 'q':
         break
     else:
