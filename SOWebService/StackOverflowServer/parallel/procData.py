@@ -207,7 +207,7 @@ def create_dict(mother_set):
 
 def get_basic_from_file():
     file5 = "/Users.csv"
-    users = pd.read_csv(file5, usecols = [0,1,2,3,11], header = None, sep = ',', quotechar = '"', index_col = [0], engine = 'c')
+    users = pd.read_csv(file5, usecols = [0,1,2,3,11], error_bad_lines=False, header = None, sep = ',', quotechar = '"', index_col = [0], engine = 'c')
     users_index = users.index.values.tolist()
     names = users[3].tolist()
     dates = users[2].tolist()
