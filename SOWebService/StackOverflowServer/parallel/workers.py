@@ -62,7 +62,7 @@ def worker(the_map,basics,sousers):
     for save in saves:
         report.write(sousers[ct].get_all() + ", " + str(save)  + "\n")
         data['user'].append({'user_id':sousers[ct].get_id(),'user_name':sousers[ct].get_user(),
-            'beginDate':sousers[ct].get_begin(),'reputation':sousers[ct].get_reputation(),
+            'beginDate':sousers[ct].get_begin(),'reputation':str(sousers[ct].get_reputation()),
             'estimate':str(save)})        
         ct = ct - 1
     process_time_out = datetime.datetime.now()
