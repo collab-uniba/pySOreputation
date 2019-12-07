@@ -11,7 +11,6 @@ from parallel.procData import get_basic_from_file
 from parallel.workers import decode_users
 import datetime
 from flask import Flask, request
-from flask_restful import Resource, Api
 from flask import g
 
 app = Flask(__name__)
