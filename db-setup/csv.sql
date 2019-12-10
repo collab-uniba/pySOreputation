@@ -13,7 +13,7 @@ ENCLOSED BY '"'
 LINES TERMINATED BY '\n';
 
 SELECT *
-FROM question_Answer
+FROM question_answer
 INTO OUTFILE 'Question_Answer.csv'
 FIELDS TERMINATED BY ','
 ENCLOSED BY '"'
