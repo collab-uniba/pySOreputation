@@ -8,7 +8,7 @@ You will need to install [Git LFS](https://git-lfs.github.com/) extension to che
 
 ## DISCLAIMER
 
-The extracted reputation is only an estimate (with a avg error <10%). Also, note that the scripts are already compliant with the (change)[https://stackoverflow.blog/2019/11/13/were-rewarding-the-question-askers] in the reputation system that doubles the reputation points earned from getting an upvote to a question.
+The extracted reputation is only an estimate (with an avg error <10%). Also, note that the scripts are already compliant with the (change)[https://stackoverflow.blog/2019/11/13/were-rewarding-the-question-askers] in the reputation system that doubles the reputation points earned from getting an upvote to a question.
 
 Still, the following rules are not considered:
 - Suggested edit is accepted: +2 (up to +1000 total per user)
