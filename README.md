@@ -110,8 +110,8 @@ From the command line run:
 The web service is built upon the parallel version, so make sure that you have generated the CSV files by running the script `setup_parallel.sh` before starting it.
 
 #### Requirements
+- Python 3+
 - Flask 1.1.1
-- Python 2.7 (or superior)
 - tkinter (optional for GUI)
 - uWSGI 2.0.18
 
