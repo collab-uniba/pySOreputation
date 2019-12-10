@@ -222,7 +222,7 @@ class Toplevel1:
         self.Label7.configure(background="#efefef")
         self.Label7.configure(disabledforeground="#a3a3a3")
         self.Label7.configure(foreground="#000000")
-        photo_location1 = os.path.join(prog_location,"C:\\Users\\Roberto Bellarosa\\Desktop\\imgso.png")
+        photo_location1 = os.path.join(prog_location,"//imgso.png")
         global _img1
         _img1 = tk.PhotoImage(file=photo_location1)
         self.Label7.configure(image=_img1)
