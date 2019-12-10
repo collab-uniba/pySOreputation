@@ -232,7 +232,7 @@ class ff:
         self.Label3.configure(foreground="#000000")
         
         
-        photo_location = os.path.join(prog_location,"C:\\Users\\Roberto Bellarosa\\Desktop\\somicro.PNG")
+        photo_location = os.path.join(prog_location,"/somicro.PNG")
         global _img0
         _img0 = ImageTk.PhotoImage(file=photo_location)
         self.Label3.configure(image=_img0)
