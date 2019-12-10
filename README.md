@@ -1,7 +1,7 @@
 # pySOreputation
 A sequential script to compute an approximation of the reputation gained by a [Stack Overflow](https://stackoverflow.com/) user up to a given date in python.
 
-### NOTE:
+#### NOTE:
 You will need to install [Git LFS](https://git-lfs.github.com/) extension to check out this project. Once installed and initialized, simply run:
 
 ```$ git lfs clone https://github.com/collab-uniba/pySOreputation.git```
@@ -64,7 +64,8 @@ If you want to run your script locally or deploy the web service on your own ser
 Go to the `scripts/db-setup/` folder and run in batch mode the sql script `setup_sequential.sh`:
 
 ```$ bash setup_sequential.sh```
-## NOTE:
+
+#### NOTE:
 Before running, edit the first lines of the file to change the following information:
 ```
 #!/bin/bash
@@ -82,7 +83,7 @@ The scripts referenced in this section must be edited prior to execution, in ord
 - SO database name
 ### Script: Sequential version
 #### Requirements
-- Python 3
+- Python 3+
 - PyMySQL version 0.7.9
 
 #### Usage
@@ -95,29 +96,32 @@ From command line run:
 Need file CSV (setup_parallel.sh)
 
 #### Requirements
-- Python 2.7 (or superior)
+- Python 3+
 - Pandas 0.25.3
 - concurrent.futures
 
 #### Usage
-From command line run:
-
+From the command line run:
 ```$ python main.py```
-### Web Service 
+
+## Web Service 
 Need file CSV (setup_parallel.sh)
+
 #### Requirements
 - Flask 1.1.1
 - Python 2.7 (or superior)
 - tkinter (optional for GUI)
 - uWSGI 2.0.18
-#### Api
-##### Documentation
-From command line run:
+
+#### How to run
+##### Server
+From the command line, run:
 ```/usr/local/bin/uwsgi --ini app.ini```
 
-Wait for setup of application service.
-#### Usage
-From command line run:
+Then, wait for the setup of application service.
+
+#### Client
+Run:
 ```$ python client.py```
 
 #### Example
