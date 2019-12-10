@@ -98,8 +98,8 @@ From command line run:
 Unlike the sequential version, the parallel one does not use a MySQL database. Instead, it relies on several CSV files that are created *ad hoc* by running the script `setup_parallel.sh`, which will retrieve the content from the database and pre-process it for increasing the speed.
 
 #### Requirements
-- Python 3+
-- Pandas 0.25.3
+- Python 3.4+
+- Pandas 
 - concurrent.futures
 
 #### Usage
@@ -110,10 +110,10 @@ From the command line run:
 The web service is built upon the parallel version, so make sure that you have generated the CSV files by running the script `setup_parallel.sh` before starting it.
 
 #### Requirements
-- Python 3+
-- Flask 1.1.1
-- tkinter (optional for GUI)
-- uWSGI 2.0.18
+- Python 3.4+
+- Flask 
+- uWSGI 
+- tkinter (optional for GUI, install locally e.g., via `apt-get install python-tk`)
 
 #### How to run
 ##### Server
