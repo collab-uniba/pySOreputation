@@ -81,6 +81,7 @@ The scripts referenced in this section must be edited prior to execution, in ord
 - MySQL username
 - MySQL password
 - SO database name
+
 ### Script: Sequential version
 #### Requirements
 - Python 3+
@@ -92,8 +93,7 @@ From command line run:
 ```$ python reputation.py```
 
 ### Script: Parallel version
-
-Need file CSV (setup_parallel.sh)
+Unlike the sequential version, the parallel one does not use a MySQL database. Instead, it relies on several CSV files that are created *ad hoc* by running the script `setup_parallel.sh`, which will retrieve the content from the database and pre-process it for increasing the speed.
 
 #### Requirements
 - Python 3+
@@ -105,7 +105,7 @@ From the command line run:
 ```$ python main.py```
 
 ## Web Service 
-Need file CSV (setup_parallel.sh)
+The web service is built upon the parallel version, so make sure that you have generated the CSV files by running the script `setup_parallel.sh` before starting it.
 
 #### Requirements
 - Flask 1.1.1
