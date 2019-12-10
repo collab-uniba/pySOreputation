@@ -62,7 +62,21 @@ class Souser:
 	print(self.user_name)
 	print(self.user_id)
 	print(self.beginDate)
-	print(self.endDate)    
+	print(self.endDate)
+
+#This class provide the reputation scores values
+
+class score:
+  
+  def __init__(self):
+      return
+  
+  quest_up = 10 #question is voted up: +10
+  ans_up = 10 #answer is voted up: +10
+  ans_accepted = 15 #answer is marked "accepted": +15
+  acceptor = 2 #acceptor of the answer: +2
+  quest_down = -2 #question is voted down: −2
+  ans_down = -2 #your answer is voted down: −2
         
 def RepresentsInt(s):
     try:
@@ -145,6 +159,8 @@ def setup_all():
     s.set_begin(beginDate)
     
     return s
+
+theScore = score()
     
 def reputation(Souser):
 
@@ -183,32 +199,32 @@ def reputation(Souser):
         main_cursor.execute("select count(*) from question_answer where ACreationDate between '" + searchDay1 + "' and '" + searchDay2 + "' and AOwnerUserId = " + str(user_id) + " and QOwnerUserId <> " + str(user_id))
         result = main_cursor.fetchone()
         result = result[0]
-        acceptedAnswers = acceptedAnswers + result * 15 #answer is marked “accepted”: +15
+        acceptedAnswers = acceptedAnswers + result * theScore.ans_accepted #answer is marked “accepted”
 
         main_cursor.execute("select count(*) from question_answer where ACreationDate between '" + searchDay1 + "' and '" + searchDay2 + "' and QOwnerUserId = " + str(user_id) + " and AOwnerUserId <> " + str(user_id))
         result = main_cursor.fetchone()
         result = result[0]
-        acceptedAnswers = acceptedAnswers + result * 2 #(+2 to acceptor)
+        acceptedAnswers = acceptedAnswers + result * theScore.acceptor #to acceptor
 
         main_cursor.execute("select count(*) from posts_votes1 where CreationDate = '" + str(beginDate) + "' and OwnerUserId = " + str(user_id))
         upVotes = main_cursor.fetchone()
         upVotes = upVotes[0]
-        daily_points = daily_points + upVotes * 5 #question is voted up: +5
+        daily_points = daily_points + upVotes * theScore.quest_up #question is voted up
 
         main_cursor.execute("select count(*) from posts_votes2 where CreationDate = '" + str(beginDate) + "' and OwnerUserId = " + str(user_id))
         downVotes = main_cursor.fetchone()
         downVotes = downVotes[0]
-        daily_points = daily_points + downVotes * -2 #your question is voted down: -2
+        daily_points = daily_points + downVotes * theScore.quest_down #your question is voted down
 
         main_cursor.execute("select count(*) from posts_votes3 where CreationDate = '" + str(beginDate) + "' and OwnerUserId = " + str(user_id))
         upVotes = main_cursor.fetchone()
         upVotes = upVotes[0]
-        daily_points = daily_points + upVotes * 10 #answer is voted up: +10
+        daily_points = daily_points + upVotes * theScore.ans_up #answer is voted up
 
         main_cursor.execute("select count(*) from posts_votes4 where CreationDate = '" + str(beginDate) + "' and OwnerUserId = " + str(user_id))
         downVotes = main_cursor.fetchone()
         downVotes = downVotes[0]
-        daily_points = daily_points + downVotes * -2 #your answer is voted down: -2
+        daily_points = daily_points + downVotes * theScore.ans_down #your answer is voted down
 
         daily_points = daily_points + acceptedAnswers #accepted answers are not subject to the daily reputation limit
 
