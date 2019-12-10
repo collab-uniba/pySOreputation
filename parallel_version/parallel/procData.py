@@ -53,7 +53,7 @@ def getDownVotes(user_id, ids, downvotes_list):
     for i in ids:
         if (i == user_id):    
             downVotes = downvotes_list[j]
-	    if(type(downVotes) == str):
+            if(type(downVotes) == str):
                 downVotes = 0
                 break
             break
