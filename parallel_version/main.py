@@ -18,7 +18,7 @@ def main():
     end = datetime.datetime.now()
     print("Time to load: " + str(end-start))
     while True:
-        decision = raw_input("To start computation press c, else q to exit: ")
+        decision = input("To start computation press c, else q to exit: ")
         if(decision == 'c'):
             worker(the_map,basics)
         elif(decision == 'q'):
