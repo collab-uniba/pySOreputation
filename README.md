@@ -126,8 +126,8 @@ Then, wait for the setup of application service.
 Run:
 ```$ python client.py```
 
-Web Gui:
-http://127.0.0.1/8000/information
+To run Gui go to ```SOWebService/StackOverflowClient/StackOverflowClient/``` and run:
+```$ python client.py```
 
 #### Example
 ![Result example in client](https://github.com/collab-uniba/pySOreputation/blob/master/images/web%20server%20result.PNG)
