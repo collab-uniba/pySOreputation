@@ -34,7 +34,7 @@ def get_map():
 
 with app.app_context():
     print("\nWelcome to Stack Overflow reputation estimator!")
-    print("\nLoading data...\nIt will takes about 15 minutes!")
+    print("\nLoading data...\nIt will take about 10 minutes!")
     start = datetime.datetime.now()
     the_map = get_map()
     basics = get_basic()
