@@ -11,7 +11,7 @@ import datetime
 
 def main():
     print("\nWelcome to Stack Overflow reputation estimator!")
-    print("\nLoading data...\nIt will takes about 15 minutes!")
+    print("\nLoading data...\nIt will take about 10 minutes!")
     start = datetime.datetime.now()
     the_map = preprocessing()
     basics = get_basic_from_file()
