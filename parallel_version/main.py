@@ -60,7 +60,7 @@ def main():
         so_users[uid] = date
     elif file is not None:
         if not os.path.isfile(file):
-            raise ('The file specified does not exist')
+            raise FileNotFoundError('The file specified does not exist')
         with open(file, mode='r') as f:
             lines = f.readlines()
             for line in lines:
