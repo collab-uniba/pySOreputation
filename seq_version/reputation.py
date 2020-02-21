@@ -127,7 +127,7 @@ def reputation(souser):
 
     start = datetime.datetime.now()
 
-    print("There will be considered days from " + str(begin_date) + " to " + str(end_date))
+    print("Considering days from " + str(begin_date) + " to " + str(end_date))
 
     estimated_reputation = 1  # starting reputation (can't be below 1)
     bonus_flag = True
