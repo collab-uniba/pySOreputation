@@ -18,11 +18,11 @@ class SOuser:
     def set_reputation(self, reputation):
         self.reputation = reputation
 
-    def set_begin(self, beginDate):
-        self.beginDate = beginDate
+    def set_begin(self, d):
+        self.beginDate = d
 
-    def set_end(self, endDate):
-        self.endDate = endDate
+    def set_end(self, d):
+        self.endDate = d
         
     def get_id(self):
         return self.user_id
@@ -39,8 +39,8 @@ class SOuser:
     def get_end(self):
         return self.endDate
     
-    def set_downVotes(self, downVotes):
-        self.downVotes = downVotes
+    def set_downVotes(self, dv):
+        self.downVotes = dv
     
     def get_downVotes(self):
         return self.downVotes
