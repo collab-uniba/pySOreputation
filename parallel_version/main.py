@@ -37,8 +37,7 @@ def create_argparser():
 
 
 def main():
-    print("\nWelcome to Stack Overflow reputation estimator!")
-    print("\nLoading data...\nIt will take about 10 minutes!")
+    print("\nLoading data...\nIt will take about 15 minutes!")
     start = datetime.datetime.now()
     the_map = None
     basics = None
