@@ -271,7 +271,7 @@ def main():
         i = i + 1
     elif uid_file is not None:
         if not os.path.isfile(uid_file):
-            raise ('The file specified does not exist')
+            raise FileNotFoundError('The file specified does not exist')
         with open(uid_file, mode='r') as f:
             lines = f.readlines()
             for line in lines:
