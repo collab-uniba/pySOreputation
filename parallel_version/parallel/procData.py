@@ -68,24 +68,22 @@ def get_downvotes(user_id, ids, downvotes_list):
 
 
 def setup_all(basics, user_id, end_date):
-    # users_index = basics[0]
-    # names = basics[1]
-    # dates = basics[2]
-    # reputations = basics[3]
-    # downvotes_list = basics[4]
+    users_index = basics[0]
+    names = basics[1]
+    dates = basics[2]
+    reputations = basics[3]
+    downvotes_list = basics[4]
 
-    # user_name = get_username_by_id(user_id, users_index, names)
-    # begin_date = get_registration_date(user_id, users_index, dates)
-    user_name = "bateman"
-    begin_date = datetime.date.min
+    user_name = get_username_by_id(user_id, users_index, names)
+    begin_date = get_registration_date(user_id, users_index, dates)
 
     s = SOuser()
     s.set_user(str(user_name))
     s.set_id(str(user_id))
     s.set_end(end_date)
     s.set_begin(begin_date)
-    # s.set_reputation(get_reputation(user_id, users_index, reputations))
-    # s.set_downVotes(get_downvotes(user_id, users_index, downvotes_list))
+    s.set_reputation(get_reputation(user_id, users_index, reputations))
+    s.set_downVotes(get_downvotes(user_id, users_index, downvotes_list))
     return s
 
 

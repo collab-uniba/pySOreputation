@@ -42,8 +42,8 @@ def main():
     start = datetime.datetime.now()
     the_map = None
     basics = None
-    # the_map = preprocessing()
-    # basics = get_basic_from_file()
+    the_map = preprocessing()
+    basics = get_basic_from_file()
     end = datetime.datetime.now()
     print("Time to load: " + str(end - start))
 
