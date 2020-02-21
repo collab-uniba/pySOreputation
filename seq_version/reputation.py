@@ -256,11 +256,11 @@ users_table = "users"
 votes_table = "votes"
 
 # create a connection to MySQL with arguments: host, username and password
-# conn = pymysql.connect(host='localhost', user='user', password='password')
-# main_cursor = conn.cursor()
-# cursor = conn.cursor()
-# main_cursor.execute("use " + database_name)  # access to database
-# the_score = Score()
+conn = pymysql.connect(host='localhost', user='user', password='password')
+main_cursor = conn.cursor()
+cursor = conn.cursor()
+main_cursor.execute("use " + database_name)  # access to database
+the_score = Score()
 
 
 def main():
