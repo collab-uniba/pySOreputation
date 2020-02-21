@@ -86,34 +86,25 @@ class Score:
     ans_down = -2  # your answer is voted down: −2
 
 
-def as_int(s):
-    try:
-        int(s)
-        return True
-    except ValueError:
-        return False
-
-
 def setup_all(user_id, end_date):
-    s = Souser()
-    ris = []
-
+    print(user_id, end_date)
     main_cursor.execute("select DisplayName from " + users_table + "  where Id = '" + user_id + "'")
     user_name = main_cursor.fetchone()[0]
     main_cursor.execute("select CreationDate from " + users_table + " where id = " + str(user_id))
     begin_date = main_cursor.fetchone()
     begin_date = begin_date[0].date()
-    while True:
-        try:
-            year, month, day = map(int, end_date.split('-'))
-            end_date = datetime.date(year, month, day)
-            if end_date >= begin_date:
-                break
-            else:
-                print("Warning: user {0} was not registered on {1} yet".format(str(user_id), str(end_date)))
-        except ValueError as e:
-            print(e)
 
+    try:
+        year, month, day = map(int, end_date.split('-'))
+        end_date = datetime.date(year, month, day)
+        if end_date >= begin_date:
+            pass
+        else:
+            print("Warning: user {0} was not registered on {1} yet".format(str(user_id), str(end_date)))
+    except ValueError as e:
+        print(e)
+
+    s = Souser()
     s.set_user(user_name)
     s.set_id(user_id)
     s.set_end(end_date)
@@ -125,7 +116,6 @@ def setup_all(user_id, end_date):
 def reputation(souser):
     main_cursor = conn.cursor()  # create a cursor to execute query
     main_cursor.execute("use " + database_name)  # access to database
-    cursor = conn.cursor()
 
     begin_date = souser.get_begin()
     end_date = souser.get_end()
@@ -159,42 +149,42 @@ def reputation(souser):
                 user_id) + " and QOwnerUserId <> " + str(user_id))
         result = main_cursor.fetchone()
         result = result[0]
-        accepted_answers = accepted_answers + result * the_score.ans_accepted  # answer is marked “accepted”
+        accepted_answers = accepted_answers + result * score.ans_accepted  # answer is marked “accepted”
 
         main_cursor.execute(
             "select count(*) from question_answer where ACreationDate between '" + search_day1 + "' and '" + search_day2 + "' and QOwnerUserId = " + str(
                 user_id) + " and AOwnerUserId <> " + str(user_id))
         result = main_cursor.fetchone()
         result = result[0]
-        accepted_answers = accepted_answers + result * the_score.acceptor  # to acceptor
+        accepted_answers = accepted_answers + result * score.acceptor  # to acceptor
 
         main_cursor.execute(
             "select count(*) from posts_votes1 where CreationDate = '" + str(begin_date) + "' and OwnerUserId = " + str(
                 user_id))
         upvotes = main_cursor.fetchone()
         upvotes = upvotes[0]
-        daily_points = daily_points + upvotes * the_score.quest_up  # question is voted up
+        daily_points = daily_points + upvotes * score.quest_up  # question is voted up
 
         main_cursor.execute(
             "select count(*) from posts_votes2 where CreationDate = '" + str(begin_date) + "' and OwnerUserId = " + str(
                 user_id))
         downvotes: Optional[Any] = main_cursor.fetchone()
         downvotes = downvotes[0]
-        daily_points = daily_points + downvotes * the_score.quest_down  # your question is voted down
+        daily_points = daily_points + downvotes * score.quest_down  # your question is voted down
 
         main_cursor.execute(
             "select count(*) from posts_votes3 where CreationDate = '" + str(begin_date) + "' and OwnerUserId = " + str(
                 user_id))
         upvotes = main_cursor.fetchone()
         upvotes = upvotes[0]
-        daily_points = daily_points + upvotes * the_score.ans_up  # answer is voted up
+        daily_points = daily_points + upvotes * score.ans_up  # answer is voted up
 
         main_cursor.execute(
             "select count(*) from posts_votes4 where CreationDate = '" + str(begin_date) + "' and OwnerUserId = " + str(
                 user_id))
         downvotes = main_cursor.fetchone()
         downvotes = downvotes[0]
-        daily_points = daily_points + downvotes * the_score.ans_down  # your answer is voted down
+        daily_points = daily_points + downvotes * score.ans_down  # your answer is voted down
 
         daily_points = daily_points + accepted_answers  # accepted answers are not subject to the daily reputation limit
 
@@ -220,8 +210,8 @@ def reputation(souser):
         estimated_reputation = 1
     end = datetime.datetime.now()
     souser.set_estimate_reputation(estimated_reputation)
-    print("The estimated reputation at " + str(end_date) + " is: " + str(
-        estimated_reputation) + "(registered reputation is : " + str(real_reputation) + ")")
+    print("The estimated reputation at " + str(end_date) + " is: " + str(estimated_reputation) +
+          " (registered reputation " + str(real_reputation) + ")")
     print("Time to estimate reputation for user " + str(user_id) + ": " + str(end - start))
 
 
@@ -258,9 +248,9 @@ votes_table = "votes"
 # create a connection to MySQL with arguments: host, username and password
 conn = pymysql.connect(host='localhost', user='user', password='password')
 main_cursor = conn.cursor()
-cursor = conn.cursor()
 main_cursor.execute("use " + database_name)  # access to database
-the_score = Score()
+
+score = Score()
 
 
 def main():
@@ -268,30 +258,30 @@ def main():
     args = parser.parse_args()
     uid = args.uid
     date = args.date
-    file = args.file
+    uid_file = args.file
 
-    if uid is None and file is None:
+    if uid is None and uid_file is None:
         raise Exception('Invalid parameters: either a single SO user id or a file with multiple ids must be provided')
 
-    sousers = []
+    so_users = []
     i = 0
     if uid is not None:
         single_user = setup_all(uid, date)
-        sousers.append(single_user)
+        so_users.append(single_user)
         i = i + 1
-    elif file is not None:
-        if not os.path.isfile(file):
+    elif uid_file is not None:
+        if not os.path.isfile(uid_file):
             raise ('The file specified does not exist')
-        with open(file, mode='r') as f:
+        with open(uid_file, mode='r') as f:
             lines = f.readlines()
             for line in lines:
                 u = line.strip().replace('"', '')
                 if u.isdigit():
                     single_user = setup_all(u, date)
-                    sousers.append(single_user)
+                    so_users.append(single_user)
                     i = i + 1
 
-    NUM_WORKERS = i
+    num_workers = i
 
     report = open("seq_report.txt", "w+")
     report.close()
@@ -300,11 +290,11 @@ def main():
 
     # Run tasks sequentially
     start_time = datetime.datetime.now()
-    ct = len(sousers) - 1
-    for _ in range(NUM_WORKERS):
-        of = sousers[ct]
+    ct = len(so_users) - 1
+    for _ in range(num_workers):
+        of = so_users[ct]
         reputation(of)
-        report.write(sousers[ct].get_all() + "\n")
+        report.write(so_users[ct].get_all() + "\n")
         ct = ct - 1
     end_time = datetime.datetime.now()
     print("Total time: " + str(end_time - start_time))
