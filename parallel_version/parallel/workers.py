@@ -30,6 +30,7 @@ def worker(the_map, basics, so_users_dict):
     process_time_in = datetime.datetime.now()
     futures = []
     saves = []
+    data = dict()
     with concurrent.futures.ThreadPoolExecutor(max_workers=num_workers) as executor:
         for _ in range(num_workers):
             res = executor.submit(saves.append(reputation(so_users[ct], the_map)))
@@ -38,7 +39,9 @@ def worker(the_map, basics, so_users_dict):
         concurrent.futures.wait(futures)
     for save in saves:
         report.write(so_users[ct].get_all() + ", " + str(save) + "\n")
+        data[so_users[ct]] = str(save)
         ct = ct - 1
     process_time_out = datetime.datetime.now()
     process_time = process_time_out - process_time_in
     print("Time for concurrent.futures: " + str(process_time))
+    return data
