@@ -8,7 +8,13 @@ Created on Fri Nov 15 11:06:39 2019
 from data_handler import data_handler
 import requests
 import json
-
+"""
+curl \
+  --header "Content-type: application/json" \
+  --request POST \
+  --data '{"user_id": "1315221", "date": "2019-08-31"}' \
+  http://127.0.0.1:19000/estimate
+"""
 def send_request_post():
     url = "http://127.0.0.1:8000/estimate"
     data = my_json.give_json()
