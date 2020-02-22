@@ -7,7 +7,7 @@ Created on Fri Nov 15 11:07:34 2019
 
 import datetime
 
-from flask import Flask, request
+from flask import Flask, request, jsonify
 from flask import g
 
 from parallel.procData import get_basic_from_file
@@ -22,18 +22,12 @@ def serv_reputation():
     the_json = request.get_json(force=True)
     so_users = decode_users(the_json)
     data = worker(the_map, basics, so_users)
-    return data
+    return jsonify(data)
 
 
 def decode_users(json_data):
     so_users = dict()
-    user_ids = json_data['user_id']
-    dates = json_data['date']
-    i = 0
-    for uid in user_ids:
-        so_users[uid] = dates[i]
-        i = i + 1
-
+    so_users[json_data['user_id']] = json_data['date']
     return so_users
 
 
@@ -50,7 +44,7 @@ def get_map():
 
 
 with app.app_context():
-    print("\nBooting Stack Overflow reputation estimator web service\n")
+    print("\nBooting Stack Overflow reputation estimator web service")
     print("Loading data... (it will take about 10 minutes)\n")
     start = datetime.datetime.now()
     the_map = get_map()
