@@ -20,10 +20,14 @@ def get_username_by_id(uid, ids, names):
     name = None
     j = 0
     for i in ids:
-        if i == uid:
+        if i == int(uid):
             name = names[j]
             break
         j += 1
+
+    if name is None:
+        print("Warning, could not find a display bame for user {0}".format(uid))
+        name = "Not-found"
     return name
 
 
@@ -31,11 +35,15 @@ def get_registration_date(user_id, ids, dates):
     temp = ""
     j = 0
     for i in ids:
-        if i == user_id:
+        if i == int(user_id):
             temp = dates[j]
             break
         j += 1
 
+    if temp == "":
+        print("Warning, could not find registration date for user {0}".format(user_id) +
+              "\nAssuming 2002-08-01 00:00:00")
+        temp = "2002-08-01 00:00:00"
     temp = datetime.datetime.strptime(temp, '%Y-%m-%d %H:%M:%S')
     temp = temp.date()
     return temp
@@ -68,22 +76,23 @@ def get_downvotes(user_id, ids, downvotes_list):
 
 
 def setup_all(basics, user_id, end_date):
-    users_index = basics[0]
+    uids = basics[0]
     names = basics[1]
     dates = basics[2]
     reputations = basics[3]
-    downvotes_list = basics[4]
+    upvotes_list = basics[4]
+    downvotes_list = basics[5]
 
-    user_name = get_username_by_id(user_id, users_index, names)
-    begin_date = get_registration_date(user_id, users_index, dates)
+    user_name = get_username_by_id(user_id, uids, names)
+    begin_date = get_registration_date(user_id, uids, dates)
 
     s = SOuser()
     s.set_user(str(user_name))
     s.set_id(str(user_id))
     s.set_end(end_date)
     s.set_begin(begin_date)
-    s.set_reputation(get_reputation(user_id, users_index, reputations))
-    s.set_downVotes(get_downvotes(user_id, users_index, downvotes_list))
+    s.set_reputation(get_reputation(user_id, uids, reputations))
+    s.set_downVotes(get_downvotes(user_id, uids, downvotes_list))
     return s
 
 
@@ -204,18 +213,21 @@ def create_dict(mother_set):
 
 def get_basic_from_file():
     file = "./Users.csv"
-    users = pd.read_csv(file, usecols=[0, 1, 2, 3, 11], header=None, error_bad_lines=False, sep=',', quotechar='"',
+    users = pd.read_csv(file, #usecols=[0, 1, 2, 3, 11],
+                        header=None, error_bad_lines=False, sep=',', quotechar='"',
                         index_col=[0], engine='c')
     users_index = users.index.values.tolist()
     names = users[3].tolist()
     dates = users[2].tolist()
     reputations = users[1].tolist()
-    downvotes_list = users[11].tolist()
+    upvotes_list = users[4].tolist
+    downvotes_list = users[5].tolist()
     basics = list()
     basics.append(users_index)
     basics.append(names)
     basics.append(dates)
     basics.append(reputations)
+    basics.append(upvotes_list)
     basics.append(downvotes_list)
     return basics
 
