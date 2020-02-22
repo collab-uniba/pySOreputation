@@ -67,7 +67,6 @@ def get_downvotes(user_id, ids, downvotes_list):
     for i in ids:
         if i == int(user_id):
             downvotes = downvotes_list[j]
-            print("Downvotes for {0} is {1}".format(user_id, downvotes))
             if type(downvotes) == str:
                 downvotes = 0
                 break
