@@ -12,10 +12,6 @@ import pandas as pd
 from parallel.SOuser import SOuser
 
 
-def is_int(s):
-    return s.isdigit()
-
-
 def get_username_by_id(uid, ids, names):
     name = None
     j = 0
