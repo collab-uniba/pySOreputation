@@ -37,10 +37,8 @@ def create_argparser():
 
 
 def main():
-    print("\nLoading data...\nIt will take about 15 minutes!")
+    print("\nLoading data... (it will take about 15 minutes)")
     start = datetime.datetime.now()
-    the_map = None
-    basics = None
     the_map = preprocessing()
     basics = get_basic_from_file()
     end = datetime.datetime.now()
