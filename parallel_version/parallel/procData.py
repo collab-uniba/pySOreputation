@@ -80,7 +80,7 @@ def setup_all(basics, user_id, end_date):
     names = basics[1]
     dates = basics[2]
     reputations = basics[3]
-    upvotes_list = basics[4]
+    upvotes_list = basics[4]  # TODO is it really useless?
     downvotes_list = basics[5]
 
     user_name = get_username_by_id(user_id, uids, names)
@@ -89,7 +89,8 @@ def setup_all(basics, user_id, end_date):
     s = SOuser()
     s.set_user(str(user_name))
     s.set_id(str(user_id))
-    s.set_end(end_date)
+    year, month, day = map(int, end_date.split('-'))
+    s.set_end(datetime.date(year, month, day))
     s.set_begin(begin_date)
     s.set_reputation(get_reputation(user_id, uids, reputations))
     s.set_downVotes(get_downvotes(user_id, uids, downvotes_list))

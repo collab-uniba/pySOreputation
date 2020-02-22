@@ -29,17 +29,13 @@ def reputation(souser, big_map):
 
     print("Considering days from " + str(begin_date) + " to " + str(end_date))
     estimated_reputation = 1  # starting reputation (can't be below 1)
-    # edit_limit = 0
     bonus_flag = True
 
     real_reputation = souser.get_reputation()
     print("The real reputation is: ")
     print(str(real_reputation))
 
-    result = 0
-
     while begin_date <= end_date:
-
         # print(str(begin_date) + " - " + str(end_date) + " - " + str(estimated_reputation) + " - " + str(real_reputation))
         search_day1 = begin_date.strftime('%Y-%m-%d') + " 00:00:00"
         search_day2 = begin_date.strftime('%Y-%m-%d') + " 23:59:59"
