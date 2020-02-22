@@ -5,7 +5,7 @@ FIELDS TERMINATED BY ','
 ENCLOSED BY '"'
 LINES TERMINATED BY '\n';
 
-SELECT *
+SELECT Id,Reputation,CreationDate,DisplayName,UpVotes,DownVotes
 FROM users
 INTO OUTFILE 'Users.csv'
 FIELDS TERMINATED BY ','
