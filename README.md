@@ -113,12 +113,17 @@ The web service is built upon the parallel version, so make sure that you have g
 - Python 3.4+
 - Flask 
 - uWSGI 
-- tkinter (optional for GUI, install locally e.g., via `apt-get install python-tk`)
+- Pillow
 
 #### How to run
+Before first run, execute once the setup file:
+```bash
+sh setup_ws.sh
+```
+
 ##### Server
 From the command line, run:
-```/usr/local/bin/uwsgi --ini app.ini```
+```uwsgi --ini app.ini```
 
 Then, wait for the setup of application service.
 
@@ -128,6 +133,3 @@ Run:
 
 To run Gui go to ```SOWebService/StackOverflowClient/StackOverflowClient/``` and run:
 ```$ python client.py```
-
-#### Example
-![Result example in client](https://github.com/collab-uniba/pySOreputation/blob/master/images/web%20server%20result.PNG)
