@@ -10,7 +10,6 @@ import datetime
 from flask import Flask, request
 from flask import g
 
-from parallel.SOuser import SOuser
 from parallel.procData import get_basic_from_file
 from parallel.procData import preprocessing
 from parallel.workers import worker
@@ -21,24 +20,21 @@ app = Flask(__name__)
 @app.route('/estimate', methods=['POST'])
 def serv_reputation():
     the_json = request.get_json(force=True)
-    sousers = decode_users(the_json)
-    data = worker(the_map, basics, sousers)
+    so_users = decode_users(the_json)
+    data = worker(the_map, basics, so_users)
     return data
 
 
 def decode_users(json_data):
-    sousers = []
-    data = json_data
-    users = data['user_id']
-    dates = data['date']
+    so_users = dict()
+    user_ids = json_data['user_id']
+    dates = json_data['date']
     i = 0
-    for item in users:
-        single = SOuser()
-        single.set_id(item)
-        single.set_end(dates[i])
-        sousers.append(single)
+    for uid in user_ids:
+        so_users[uid] = dates[i]
         i = i + 1
-    return sousers
+
+    return so_users
 
 
 def get_basic():
