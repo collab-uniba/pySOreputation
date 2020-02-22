@@ -32,8 +32,6 @@ def reputation(souser, big_map):
     bonus_flag = True
 
     real_reputation = souser.get_reputation()
-    print("The real reputation is: ")
-    print(str(real_reputation))
 
     while begin_date <= end_date:
         # print(str(begin_date) + " - " + str(end_date) + " - " + str(estimated_reputation) + " - " + str(real_reputation))
@@ -129,6 +127,6 @@ def reputation(souser, big_map):
     print("The estimated reputation on " + str(end_date) + " is: " + str(
         estimated_reputation) + " while the real reputation is : " + str(real_reputation))
     end = datetime.datetime.now()
-    print("Time for estimate reputation for this user " + str(souser.get_id()) + " :")
+    print("Time for estimate reputation for user " + str(souser.get_id()) + " :")
     print(end - start)
     return estimated_reputation

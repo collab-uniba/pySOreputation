@@ -53,13 +53,13 @@ def get_reputation(user_id, ids, reputations):
     temp = None
     j = 0
     for i in ids:
-        if i == user_id:
+        if i == int(user_id):
             temp = reputations[j]
             break
         j += 1
 
     if temp is None:
-        print("Warning: registered reputation for user {0} was not found".format(user_id) +
+        print("Warning: registered reputation for user {0} was not found\n".format(user_id) +
               "Using -1 as default")
         temp = -1
     return temp
@@ -69,7 +69,7 @@ def get_downvotes(user_id, ids, downvotes_list):
     downvotes = 0
     j = 0
     for i in ids:
-        if i == user_id:
+        if i == int(user_id):
             downvotes = downvotes_list[j]
             print("Downvotes for {0} is {1}".format(user_id, downvotes))
             if type(downvotes) == str:
@@ -219,8 +219,7 @@ def create_dict(mother_set):
 
 def get_basic_from_file():
     file = "./Users.csv"
-    users = pd.read_csv(file, #usecols=[0, 1, 2, 3, 11],
-                        header=None, error_bad_lines=False, sep=',', quotechar='"',
+    users = pd.read_csv(file, header=None, error_bad_lines=False, sep=',', quotechar='"',
                         index_col=[0], engine='c')
     users_index = users.index.values.tolist()
     names = users[3].tolist()
