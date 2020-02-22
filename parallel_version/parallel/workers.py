@@ -41,5 +41,4 @@ def worker(the_map, basics, so_users_dict):
         ct = ct - 1
     process_time_out = datetime.datetime.now()
     process_time = process_time_out - process_time_in
-    report.write("Total time for concurrent.futures execution: " + str(process_time) + "\n")
     print("Time for concurrent.futures: " + str(process_time))

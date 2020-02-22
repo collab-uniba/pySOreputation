@@ -118,7 +118,7 @@ def reputation(souser, big_map):
         begin_date = temp
         begin_date = begin_date + datetime.timedelta(days=1)  # going to next day
 
-    downvotes = souser.get_downVotes()
+    downvotes = souser.get_downvotes()
 
     # cast to integer downvotes if use pandas
     estimated_reputation = estimated_reputation + int(downvotes) * -1  # you vote down an answer: −1

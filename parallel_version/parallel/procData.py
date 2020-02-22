@@ -50,7 +50,7 @@ def get_registration_date(user_id, ids, dates):
 
 
 def get_reputation(user_id, ids, reputations):
-    temp = ""
+    temp = None
     j = 0
     for i in ids:
         if i == user_id:
@@ -58,6 +58,10 @@ def get_reputation(user_id, ids, reputations):
             break
         j += 1
 
+    if temp is None:
+        print("Warning: registered reputation for user {0} was not found".format(user_id) +
+              "Using -1 as default")
+        temp = -1
     return temp
 
 
@@ -67,6 +71,7 @@ def get_downvotes(user_id, ids, downvotes_list):
     for i in ids:
         if i == user_id:
             downvotes = downvotes_list[j]
+            print("Downvotes for {0} is {1}".format(user_id, downvotes))
             if type(downvotes) == str:
                 downvotes = 0
                 break
@@ -93,7 +98,7 @@ def setup_all(basics, user_id, end_date):
     s.set_end(datetime.date(year, month, day))
     s.set_begin(begin_date)
     s.set_reputation(get_reputation(user_id, uids, reputations))
-    s.set_downVotes(get_downvotes(user_id, uids, downvotes_list))
+    s.set_downvotes(get_downvotes(user_id, uids, downvotes_list))
     return s
 
 

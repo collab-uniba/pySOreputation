@@ -39,10 +39,10 @@ class SOuser:
     def get_end(self):
         return self.endDate
     
-    def set_downVotes(self, dv):
+    def set_downvotes(self, dv):
         self.downVotes = dv
     
-    def get_downVotes(self):
+    def get_downvotes(self):
         return self.downVotes
                    
     def get_all(self):
@@ -50,7 +50,7 @@ class SOuser:
         user = user + "," + str(self.get_reputation())
         return user
     
-    def printus(self):
+    def print(self):
         print("DisplayName: " + self.user_name)
         print("Id: " + self.user_id)
         print("CreationDate: " + self.beginDate)
