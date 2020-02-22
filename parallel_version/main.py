@@ -65,7 +65,6 @@ def main():
                 u = line.strip().replace('"', '')
                 if u.isdigit():
                     so_users[u] = date
-                    i = i + 1
 
     worker(the_map, basics, so_users)
 
