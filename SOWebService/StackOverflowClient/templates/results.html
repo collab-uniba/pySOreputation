@@ -1,0 +1,22 @@
+{% extends "basic.html" %}
+{% block content %}
+<div>
+    <b>Results:</b>
+    <table class="rwd-table">
+        {% for id, data in result.items() %}
+        <tr>
+            <th>Id</th>
+            <td>{{ id }}</td>
+        </tr>
+        <tr>
+            <th>Name</th>
+            <td>{{ data[id]['name'] }}</td>
+        </tr>
+        <tr>
+            <th>Estimation</th>
+            <td>{{ data[id]['estimated'] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endblock %}
