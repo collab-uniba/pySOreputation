@@ -38,10 +38,10 @@ def worker(the_map, basics, so_users_dict):
             futures.append(res)
         concurrent.futures.wait(futures)
     for save in saves:
-        report.write(so_users[ct].get_all() + ", " + str(save) + "\n")
+        report.write(so_users[ct].get_all() + "," + str(save) + "\n")
         data[so_users[ct].get_id()] = {
             "name": so_users[ct].get_user(),
-            "estimated": str(save),
+            "estimated": save,
             "registered": so_users[ct].get_reputation()
         }
         ct = ct - 1

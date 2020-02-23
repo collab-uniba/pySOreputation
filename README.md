@@ -121,15 +121,31 @@ Before first run, execute once the setup file:
 sh setup_ws.sh
 ```
 
-##### Server
+#### Server
 From the command line, run:
 ```uwsgi --ini app.ini```
 
 Then, wait for the setup of application service.
 
 #### Client
-Run:
-```$ python client.py```
+To invoke the service from the command line, execute the following:
 
-To run Gui go to ```SOWebService/StackOverflowClient/StackOverflowClient/``` and run:
-```$ python client.py```
+```bash
+curl \
+  --header "Content-type: application/json" \
+  --request POST \
+  --data '{"user_id": "1315221", "date": "2019-08-31"}' \
+  http://hostaddress:19000/estimate
+```
+
+The returned json is formatted as follows:
+
+```json
+{
+   "1315221": {
+      "estimated": 35,
+      "name": "bateman",
+      "registered": 38
+   }
+}
+```
