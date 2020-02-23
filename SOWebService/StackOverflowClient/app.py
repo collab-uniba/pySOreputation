@@ -1,6 +1,7 @@
 import datetime
 import json
 
+import requests
 from flask import Flask, request, render_template
 
 app = Flask(__name__)
@@ -15,7 +16,7 @@ def index():
 @app.route('/results', methods=['POST'])
 def results():
     # response = None
-    url = "{0}:{1}/estimate".format(app.config['WS_HOST'], app.config['WS_PORT'])
+    url = "http://{0}:{1}/estimate".format(app.config['WS_HOST'], app.config['WS_PORT'])
     if request.method == 'POST':
         param = request.form.to_dict()
         if param['uids'] is "" or param['date'] is "":
@@ -28,18 +29,21 @@ def results():
                                        app.config['START_DATE'], app.config['DUMP_DATE']))
         else:
             json_input = json.dumps({"user_id": param['uids'], "date": param['date']})
-            # json_response = requests.post(url, data=json_input,
-            #                         headers={'Content-Type': 'application/json'})
-            json_response = """ { "1315221": {
-                                                "estimated": 35,
-                                                "name": "bateman",
-                                                "registered": 38
-                                              }
-                                 } """
-            response = dict()
-            response[param['uids']] = json.loads(json_response)
-            return render_template('results.html', result=response)
+            response = requests.post(url, data=json_input,
+                                          headers={'Content-Type': 'application/json'})
+            if response.status_code == 200:
+                result = dict()
+                result[param['uids']] = json.loads(response.text)
+                return render_template('results.html', result=result)
 
+                # json_response = """ { "1315221": {
+                #                                     "estimated": 35,
+                #                                     "name": "bateman",
+                #                                     "registered": 38
+                #                                   }
+                #                      } """
+            else:
+                return render_template('index.html', result="Error: {0}".format(response.status_code))
 
 def is_valid(date_text):
     valid = True
