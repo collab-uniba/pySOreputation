@@ -1,16 +1,28 @@
 {% extends "basic.html" %}
 {% block content %}
 <div>
-<b>Enter user ids, one per line:</b>
-<form action="http://127.0.0.1:5000/results" method="POST">
-    <textarea name="uids" cols="45" rows="4"></textarea>
-    <p>
-        <b>Date (YYYY-MM-DD):</b> <input type="text" name="date"/>
-    </p>
-    <input type="submit" value="Submit"/>
-</form>
+    {% if result %}
+        {%  set id = result['uids'] %}
+    {% endif %}
+    <b>Enter user ids, one per line:</b>
+    <form action="http://127.0.0.1:5000/results" method="POST">
+        {% if result %}
+            {% set date = result['date'] %}
+        {% endif %}
+        <textarea required name="uids" cols="45" rows="4">{{ id }}</textarea>
+        <p>
+            <b>Date (YYYY-MM-DD):</b> <input required type="text" name="date" value='{{ date }}'/>
+        </p>
+        <input type="submit" value="Submit"/>
+    </form>
 </div>
 <div>
-    <h2>{{ result }}</h2>
+    {% if result %}
+        {% set error = result['error'] %}
+    {% endif %}
+    <h2>{{ error }}</h2>
+    {% if result %}
+        {% set error = None %}
+    {% endif %}
 </div>
 {% endblock %}
