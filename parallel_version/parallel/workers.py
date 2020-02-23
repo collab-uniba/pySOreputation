@@ -39,7 +39,11 @@ def worker(the_map, basics, so_users_dict):
         concurrent.futures.wait(futures)
     for save in saves:
         report.write(so_users[ct].get_all() + ", " + str(save) + "\n")
-        data[so_users[ct]] = str(save)
+        data[so_users[ct].get_id()] = {
+            "name": so_users[ct].get_user(),
+            "estimated": str(save),
+            "registered": so_users[ct].get_reputation()
+        }
         ct = ct - 1
     process_time_out = datetime.datetime.now()
     process_time = process_time_out - process_time_in
