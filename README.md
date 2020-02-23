@@ -129,7 +129,7 @@ Then, wait for the setup of application service.
 
 #### Client
 You can test a demo version of the service at this address: [http://172.8.30.16:18000](http://172.8.30.16:18000). 
-**Note that the demo uses the official dump of 2019-08-31**
+*Note that the demo uses the official dump of 2019-08-31*.
 
 To invoke the service from the command line, execute the following:
 
