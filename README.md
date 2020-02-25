@@ -116,7 +116,6 @@ The web service is built upon the parallel version, so make sure that you have g
 - Python 3.4+
 - Flask 
 - uWSGI 
-- Pillow
 
 #### How to run
 Before first run, execute once the setup file:
@@ -214,7 +213,7 @@ $ sudo tail -f /var/log/pyso-client.log
 
 #### Screenshots
 
-![An exmaple of input](images/input.png)
+![An exmaple of input](images/input.png) { width=50% }
 
-![The result](images/restult.png)
+![The result](images/result.png) { width=50% }
 
