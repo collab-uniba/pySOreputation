@@ -152,8 +152,7 @@ $ sudo tail -f /var/log/pyso-ws.log
 ```
 
 #### Client
-You can test a demo version of the service at this address: 
-<a href="http://172.30.8.16:18000" target="_blank">http://172.30.8.16:18000</a>). 
+You can test a demo version of the service at this address: [http://172.30.8.16:18000](http://172.30.8.16:18000). 
 *Note that the demo uses the official dump of 2019-08-31, so do not query anything after that date*.
 
 To invoke the service from the command line, execute the following:
