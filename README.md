@@ -61,7 +61,13 @@ Please, cite the following works if you intend to use our tool for your own rese
 ## Installation
 You will need to install [Git LFS](https://git-lfs.github.com/) extension to check out this project. Once installed and initialized, simply run:
 
-```$ git lfs clone https://github.com/collab-uniba/pySOreputation.git```
+```bash
+$ git lfs clone https://github.com/collab-uniba/pySOreputation.git
+$ cd pySOreputation
+$ conda create --name .venv37 python=3.7 
+$ conda activate .venv37
+$ pip install -r requirements.txt
+```
 
 ## Database Setup
 If you want to run your script locally or deploy the web service on your own server, you need to setup a MySQL database. From this point forward, we assume that you have already imported the [SO dump](https://archive.org/download/stackexchange) to a local MySQL database (there are several scripts that you can easily adapt to your purpose; see [here](https://gist.github.com/megansquire/877e028504c92e94192d) for example).
