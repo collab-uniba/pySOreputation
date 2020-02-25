@@ -213,7 +213,7 @@ $ sudo tail -f /var/log/pyso-client.log
 
 #### Screenshots
 
-![An example of input](images/input.png | width=100)
+![An example of input](images/input.png)
 
-![The result](images/result.png | width=100)
+![The result](images/result.png)
 
