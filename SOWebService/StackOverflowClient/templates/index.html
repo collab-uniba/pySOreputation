@@ -5,7 +5,7 @@
         {%  set id = result['uids'] %}
     {% endif %}
     <b>Enter user ids, one per line:</b>
-    <form action="http://127.0.0.1:5000/results" method="POST">
+    <form action="/results" method="POST">
         {% if result %}
             {% set date = result['date'] %}
         {% endif %}
