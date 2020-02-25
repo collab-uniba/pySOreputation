@@ -125,11 +125,37 @@ sh setup_ws.sh
 From the command line, run:
 ```uwsgi --ini app.ini```
 
-Then, wait for the setup of application service.
+Then, wait for the application to start up.
+
+##### Installation as a service
+In order for the web service to start up with the system, 
+follow these steps.
+
+1. Copy `pyso-ws.conf` to `/etc/init`
+2. Edit line 9 of copied file to point to the actual path 
+of installation
+`cd /path/to/pySOreputation/SOWebService/StackOverflowServer`
+3. The script assumes you are running a conda environment called `.venv37`. If you're not using conda or the name is 
+different, edit line 14 accordingly.
+Also edit `start_ws.sh` and uncomment line 4 `#source /anaconda3/etc/profile.d/conda.sh` if you find the 
+service not to boot and the script to raise the error 
+`CommandNotFoundError: Your shell has not been properly configured to use 'conda activate'.`
+4. Check if the syntax is correct
+```bash
+$ init-checkconf /etc/init/pyso-ws.conf
+```
+5. Start the service manually:
+```bash
+$ sudo service pyso-ws start 
+```
+6. The service will start in about 10 minutes. Check the status:
+```bash
+$ sudo service pyso-ws status 
+```
 
 #### Client
 You can test a demo version of the service at this address: [http://172.8.30.16:18000](http://172.8.30.16:18000). 
-*Note that the demo uses the official dump of 2019-08-31*.
+*Note that the demo uses the official dump of 2019-08-31, so do not query anything after that date*.
 
 To invoke the service from the command line, execute the following:
 
@@ -152,3 +178,6 @@ The returned json is formatted as follows:
    }
 }
 ```
+
+where `name` is the name chosen by the user, `estimated` is the estimated reputation whereas `registered` 
+is the reputation stored in the database as of the dump creation. 
