@@ -1,4 +1,4 @@
-# pySOreputation
+# pySOreputation [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3686911.svg)](https://doi.org/10.5281/zenodo.3686911)
 A service to compute an approximation of the reputation gained by a [Stack Overflow](https://stackoverflow.com/) user up to a given date.
 
 ## License
