@@ -128,16 +128,14 @@ From the command line, run:
 Then, wait for the application to start up.
 
 ##### Installation as a service
-In order for the web service to start up with the system, 
-follow these steps.
+In order for the web service to start up with the system, follow these steps.
 
 1. Copy `pyso-ws.conf` to `/etc/init`
-2. Edit line 9 of copied file to point to the actual path 
+2. Edit line 13 of copied file to point to the actual path 
 of installation
 `cd /path/to/pySOreputation/SOWebService/StackOverflowServer`
-3. The script assumes you are running a conda environment called `.venv37`. If you're not using conda or the name is 
-different, edit line 14 accordingly.
-Also edit `start_ws.sh` and uncomment line 4 `#source /anaconda3/etc/profile.d/conda.sh` if you find the 
+3. The configuration assumes you are running a conda environment called `.venv37`. Hence,
+ edit `start_ws.sh` and uncomment line 4 `#source /anaconda3/etc/profile.d/conda.sh` if you find the 
 service not to boot and the script to raise the error 
 `CommandNotFoundError: Your shell has not been properly configured to use 'conda activate'.`
 4. Check if the syntax is correct
@@ -148,9 +146,9 @@ $ init-checkconf /etc/init/pyso-ws.conf
 ```bash
 $ sudo service pyso-ws start 
 ```
-6. The service will start in about 10 minutes. Check the status:
+6. The service will start in about 10 minutes. To check the status:
 ```bash
-$ sudo service pyso-ws status 
+$ sudo tail -f /var/log/pyso-ws.log
 ```
 
 #### Client
@@ -181,3 +179,26 @@ The returned json is formatted as follows:
 
 where `name` is the name chosen by the user, `estimated` is the estimated reputation whereas `registered` 
 is the reputation stored in the database as of the dump creation. 
+
+##### Installation as a service
+In order for the web client to start up with the system, follow these steps.
+
+1. Copy `pyso-client.conf` to `/etc/init`
+2. Edit line 13 of copied file to point to the actual path of installation
+`cd /path/to/pySOreputation/SOWebService/StackOverflowServer`
+3. The configuration assumes you are running a conda environment called `.venv37`. Hence,
+edit `start_client.sh` and uncomment line 4 `#source /anaconda3/etc/profile.d/conda.sh` if you find the 
+service not to boot and the script to raise the error 
+`CommandNotFoundError: Your shell has not been properly configured to use 'conda activate'.`
+4. Check if the syntax is correct
+```bash
+$ init-checkconf /etc/init/pyso-client.conf
+```
+5. Start the service manually:
+```bash
+$ sudo service pyso-client start 
+```
+6. The service will start immediately. To check the status:
+```bash
+$ sudo tail -f /var/log/pyso-client.log
+```
