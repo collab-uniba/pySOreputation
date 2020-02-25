@@ -182,6 +182,12 @@ is the reputation stored in the database as of the dump creation.
 
 ##### Installation as a service
 In order for the web client to start up with the system, follow these steps.
+Also, note that the client assumes that the server is executed on the same host on port 19000. If not, edit file `config.py` and
+change the following variables as needed
+ ```python
+WS_HOST = "localhost"
+WS_PORT = 19000
+``` 
 
 1. Copy `pyso-client.conf` to `/etc/init`
 2. Edit line 13 of copied file to point to the actual path of installation
