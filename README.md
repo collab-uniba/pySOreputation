@@ -214,8 +214,10 @@ $ sudo tail -f /var/log/pyso-client.log
 #### Screenshots
 
 ![An example of input](images/input.png)
+
 *Fig. 1: An example of input*
 
 ![The result](images/result.png)
+
 *Fig. 2: And the returned results*
 
