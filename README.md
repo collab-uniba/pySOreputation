@@ -2,6 +2,7 @@
 A service to compute an approximation of the reputation gained by a [Stack Overflow](https://stackoverflow.com/) user up to a given date.
 
 ## License
+This software is released under the MIT License.
 
 ## DISCLAIMER
 
