@@ -4,7 +4,8 @@
     {% if result %}
         {%  set id = result['uids'] %}
     {% endif %}
-    <b>Enter user ids, one per line:</b>
+    <!--b>Enter user ids, one per line:</b-->
+    <b>Enter one user ids:</b>
     <form action="/results" method="POST">
         {% if result %}
             {% set date = result['date'] %}
