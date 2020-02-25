@@ -208,3 +208,10 @@ $ sudo service pyso-client start
 ```bash
 $ sudo tail -f /var/log/pyso-client.log
 ```
+
+#### Screenshots
+
+![An exmaple of input](images/input.png)
+
+![The result](images/restult.png)
+
