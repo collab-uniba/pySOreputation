@@ -102,12 +102,12 @@ The scripts referenced in this section must be edited prior to execution, in ord
 From command line run:
 
 ```bash
-$ python reputation.py --uid ID (--file /path/to/file.txt) --date `YYYY-MM-DD`
+$ python reputation.py (--uid ID | --file /path/to/file.txt) --date `YYYY-MM-DD`
 ```
 where:
-* `-u | --uid` (mutually exclusive) is the numeric id associate with a Stack Overflow user account (e.g., `1315221`)
-* `-f | --file` (mutually exclusive) is the full path to a text file containing a list (one per line) of user ids
-* `-d | --date` (mandatory) is the date at which estimate the reputation, formatted as `YYYY-MM-DD`
+* `-u | --uid` (*mutually exclusive*) is the numeric id associate with a Stack Overflow user account (e.g., `1315221`)
+* `-f | --file` (*mutually exclusive*) is the full path to a text file containing a list (one per line) of user ids
+* `-d | --date` (*mandatory*) is the date at which estimate the reputation, formatted as `YYYY-MM-DD`
 
 Please, note that `--uid` and `--file` options are mutually exclusive, if provided together the `--uid` supersede the other.
 
@@ -121,7 +121,15 @@ Unlike the sequential version, the parallel one does not use a MySQL database. I
 
 #### Usage
 From the command line run:
-```$ python main.py```
+```bash
+$ python main.py (--uid ID | --file /path/to/file.txt) --date `YYYY-MM-DD`
+```
+where:
+* `-u | --uid` (*mutually exclusive*) is the numeric id associate with a Stack Overflow user account (e.g., `1315221`)
+* `-f | --file` (*mutually exclusive*) is the full path to a text file containing a list (one per line) of user ids
+* `-d | --date` (*mandatory*) is the date at which estimate the reputation, formatted as `YYYY-MM-DD`
+
+Please, note that `--uid` and `--file` options are mutually exclusive, if provided together the `--uid` supersede the other.
 
 ## Web Service 
 The web service is built upon the parallel version, so make sure that you have generated the CSV files by running the script `setup_parallel.sh` before starting it.
