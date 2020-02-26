@@ -95,7 +95,7 @@ The scripts referenced in this section must be edited prior to execution, in ord
 
 ### Script: Sequential version
 #### Requirements
-- Python 3+
+- Python 3.7+
 - PyMySQL version 0.7.9
 
 #### Usage
@@ -107,7 +107,7 @@ From command line run:
 Unlike the sequential version, the parallel one does not use a MySQL database. Instead, it relies on several CSV files that are created *ad hoc* by running the script `setup_parallel.sh`, which will retrieve the content from the database and pre-process it for increasing the speed.
 
 #### Requirements
-- Python 3.4+
+- Python 3.7+
 - Pandas 
 - concurrent.futures
 
@@ -155,6 +155,10 @@ $ init-checkconf /etc/init/pyso-ws.conf
 $ sudo service pyso-ws start 
 ```
 6. The service will start in about 10 minutes. To check the status:
+```bash
+$ sudo service pyso-ws status
+```
+7. To check the execution log:
 ```bash
 $ sudo tail -f /var/log/pyso-ws.log
 ```
@@ -213,6 +217,10 @@ $ init-checkconf /etc/init/pyso-client.conf
 $ sudo service pyso-client start 
 ```
 6. The service will start immediately. To check the status:
+```bash
+$ sudo service pyso-client status
+```
+7. To check the execution log:
 ```bash
 $ sudo tail -f /var/log/pyso-client.log
 ```
