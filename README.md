@@ -130,21 +130,15 @@ sh setup_ws.sh
 ```
 
 #### Server
-From the command line, run:
-```uwsgi --ini app.ini```
-
-Then, wait for the application to start up.
+From the command line, run the script `start_ws.sh`. Then, wait for the application to start up (depending on your system specs, it will take about 10 min).
 
 ##### Installation as a service
 In order for the web service to start up with the system, follow these steps.
 
 1. Copy `pyso-ws.conf` to `/etc/init`
-2. Edit line 13 of copied file to point to the actual path 
-of installation
+2. Edit line 13 of copied file to point to the actual path of installation
 `cd /path/to/pySOreputation/SOWebService/StackOverflowServer`
-3. The configuration assumes you are running a conda environment called `.venv37`. Hence,
- edit `start_ws.sh` and uncomment line 4 `#source /anaconda3/etc/profile.d/conda.sh` if you find the 
-service not to boot and the script to raise the error 
+3. The configuration assumes you are running a conda environment called `.venv37`. Hence, edit `start_ws.sh` and uncomment line 4 `#source /anaconda3/etc/profile.d/conda.sh` if you find the service not to boot and the script to raise the error 
 `CommandNotFoundError: Your shell has not been properly configured to use 'conda activate'.`
 4. Check if the syntax is correct
 ```bash
@@ -164,6 +158,8 @@ $ sudo tail -f /var/log/pyso-ws.log
 ```
 
 #### Client
+To launch the client, execute the `start_client.sh` script. The client will be locally accessible at this address [http://127.0.0.1:18000](http://127.0.0.1:18000).
+
 You can test a demo version of the service at this address: [http://172.30.8.16:18000](http://172.30.8.16:18000). 
 *Note that the demo uses the official dump of 2019-08-31, so do not query anything after that date*.
 
@@ -193,9 +189,8 @@ where `name` is the name chosen by the user, `estimated` is the estimated reputa
 is the reputation stored in the database as of the dump creation. 
 
 ##### Installation as a service
-In order for the web client to start up with the system, follow these steps.
-Also, note that the client assumes that the server is executed on the same host on port 19000. If not, edit file `config.py` and
-change the following variables as needed
+In order for the web client to start up with the system, follow the steps below.
+Also, note that the client assumes that the server is executed on the same host on port 19000. If not, edit file `config.py` and change the following variables as needed:
  ```python
 WS_HOST = "localhost"
 WS_PORT = 19000
@@ -204,10 +199,7 @@ WS_PORT = 19000
 1. Copy `pyso-client.conf` to `/etc/init`
 2. Edit line 13 of copied file to point to the actual path of installation
 `cd /path/to/pySOreputation/SOWebService/StackOverflowServer`
-3. The configuration assumes you are running a conda environment called `.venv37`. Hence,
-edit `start_client.sh` and uncomment line 4 `#source /anaconda3/etc/profile.d/conda.sh` if you find the 
-service not to boot and the script to raise the error 
-`CommandNotFoundError: Your shell has not been properly configured to use 'conda activate'.`
+3. The configuration assumes you are running a conda environment called `.venv37`. Hence, edit `start_client.sh` and uncomment line 4 `#source /anaconda3/etc/profile.d/conda.sh` if you find the service not to boot and the script to raise the error `CommandNotFoundError: Your shell has not been properly configured to use 'conda activate'.`
 4. Check if the syntax is correct
 ```bash
 $ init-checkconf /etc/init/pyso-client.conf
@@ -233,5 +225,5 @@ $ sudo tail -f /var/log/pyso-client.log
 
 ![The result](images/result.png)
 
-*Fig. 2: And the returned results*
+*Fig. 2: And the returned result*
 
