@@ -7,6 +7,7 @@ Last modified on Feb 21, 2020
 """
 import concurrent.futures
 import datetime
+import multiprocessing
 
 from parallel.procData import setup_all
 from parallel.reputation import reputation
@@ -25,8 +26,8 @@ def worker(the_map, basics, so_users_dict):
         so_users.append(single_user)
         i = i + 1
 
-    num_workers = i
-    ct = num_workers - 1
+    num_workers = multiprocessing.cpu_count()
+    ct = i - 1
     process_time_in = datetime.datetime.now()
     futures = []
     saves = []
