@@ -4,5 +4,5 @@ cffi==1.14.0
 cryptography==42.0.4
 idna==3.7
 pycparser==2.19
-PyMySQL==0.9.3
+PyMySQL==1.1.1
 six==1.14.0
