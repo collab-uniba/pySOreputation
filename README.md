@@ -1,8 +1,12 @@
 # pySOreputation [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3687265.svg)](https://doi.org/10.5281/zenodo.3687265)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fcollab-uniba%2FpySOreputation.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fcollab-uniba%2FpySOreputation?ref=badge_shield)
 A service to compute an approximation of the reputation gained by a [Stack Overflow](https://stackoverflow.com/) user up to a given date.
 
 ## License
 This software is released under the MIT License.
+
+
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fcollab-uniba%2FpySOreputation.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fcollab-uniba%2FpySOreputation?ref=badge_large)
 
 ## DISCLAIMER
 
@@ -242,4 +246,3 @@ $ sudo tail -f /var/log/pyso-client.log
 ![The result](images/result.png)
 
 *Fig. 2: And the returned result*
-
